@@ -1,0 +1,19 @@
+.footer {
+    background-color: #1a5c9d;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 15px;
+    margin-top: 40px;
+    line-height: 1.8;
+    border-top: 1px solid #ffffff44;
+}
+
+.footer-content p {
+    margin: 5px 0;
+}
+
+.footer-content p:last-child {
+    font-style: italic;
+    color: #bdff8a;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product List</title>
+    <link rel="stylesheet" th:href="@{/css/head.css}"/>
+    <link rel="stylesheet" th:href="@{/css/productList.css}"/>
+    <link rel="stylesheet" th:href="@{/css/footer.css}"/>
+</head>
+<body>
+    <!-- Header -->
+    <div th:replace="~{header::Navbar}"></div>
+
+    <br><br><br>
+
+    <!-- Page Title -->
+    <h2 id="product-heading">All Products</h2>
+
+    <!-- Product List -->
+    <div th:each="product : ${products}" class="product-card">
+        <p class="product-name" th:text="'Name: ' + ${product.productName}"></p>
+        <p class="product-type" th:text="'Type: ' + ${product.productType}"></p>
+        <p class="product-amount" th:text="'Amount: ₹' + ${product.productAmount}"></p>
+        <p class="product-quantity" th:text="'Quantity: ' + ${product.productQuantity}"></p>
+        
+        <img th:src="@{/product-image/{id}(id=${product.productId})}" width="150" height="150" class="product-image"/>
+
+        <!-- Add to Cart Form -->
+        <!-- Add to Cart Form -->
+<form th:action="@{/addToCart}" method="post">
+    <input type="hidden" name="productId" th:value="${product.productId}" />
+    <input type="text" name="userAddress" placeholder="Enter your address" required />
+    <input type="number" name="quantity" placeholder="Enter quantity" required min="1" max="${product.productQuantity}" />
+    <input type="submit" value="Add to Cart" class="add-to-cart-btn"/>
+</form>
+
+    </div>
+
+    <!-- Footer -->
+    <div th:replace="~{footer::footer}"></div>
+</body>
+</html>

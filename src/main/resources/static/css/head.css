@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Navbar {
+    position:fixed;
+
+    background-color: #1a5c9d;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 10px 40px;  /* Correct spacing without comma */
+}
+
+.logo {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.nav-link li {
+    display: inline-block; /* Make links horizontal */
+    margin-left: 15px;
+    
+}
+.nav-link {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+
+.nav-link li a {
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    padding: 5px 11px;  /*  Fix padding syntax */
+    transition: background 0.3s;
+}
+
+.nav-link li a:hover {
+    background-color: #bdff8a;
+    color: black;
+    border-radius: 5px;
+}

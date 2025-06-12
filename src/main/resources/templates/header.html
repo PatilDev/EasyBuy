@@ -1,0 +1,23 @@
+
+<header>
+<nav class="Navbar" th:fragment="Navbar">
+    <div class="logo">
+        <ul class="nav-link">
+            <li><a th:href="@{/profile}">Home</a></li>
+            <li><a th:href="@{/productList}">List Of Product</a></li>
+            <li><a th:href="@{/cart}">Cart</a></li>
+            <li><a th:href="@{/payment/history}">Payment History</a></li>
+                <li>
+                <form action="/search" method="get">
+  <input type="text" name="query" placeholder="What you want!" required />
+  <button type="submit">Search</button>
+</form>
+
+            <li><a th:href="@{/addproduct}">Sell Your Product</a></li>
+            <li><a th:href="@{/aboutas}">About EasyBuy</a></li>
+
+<li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+</header>

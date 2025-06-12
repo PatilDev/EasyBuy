@@ -1,0 +1,85 @@
+
+.hometable{
+    margin:100px 200px 200px 200px;
+
+    height: 400px;
+    width:500px;
+    padding: 40px;
+    color:rgb(80, 2, 38);
+    background-color:white;
+    border: 3px,solid ,black;
+    border-radius: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
+    text-align: center;
+
+}
+#h {
+    color:rgb(0, 0, 255);
+    font-family:'Times New Roman', Times, serif;
+    font-size: 40px;
+    padding: 50px,50px,50px,50px;
+}
+#body{
+    background-image:url("/images/loginpage.jpg");
+}
+#loginpage{
+    background-color: rgb(8, 31, 92); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.userloginimg{
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+}
+
+
+.login{
+    margin:100px 200px 200px 200px;
+    height: 400px;
+    width: 500px;
+    padding: 40px;
+    border-width: 4px;
+    border-radius: 30px;
+    border-style:solid;
+    border-color: gold;
+    
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+    color:rgb(255, 255, 255);
+    background-color: rgb(51,78,178);
+    
+
+}
+#homeref{
+    color:#ffff00;
+    padding-right: 100px;
+}
+
+#reg{
+  color:blue; 
+  background-color:rgb(rgb(228, 229, 239), green, blue);
+}
+#button{
+    color:rgb(230, 0, 46);
+    background-color: white;
+    font-size:xx-large;
+    width: 60;
+    height: 40;
+    align-items: center;
+    border: solid;
+    border-radius: 30px;
+    border-color: black;
+    border-width: 2px;
+}
+#b{
+    font-size: 40;
+    text-decoration-line: underline;
+    text-decoration: wavy;
+    text-decoration: #ffff00;
+}

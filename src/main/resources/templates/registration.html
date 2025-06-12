@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" th:href="@{/css/registration.css}">
+
+        <title>User page demo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+    <div class ="regpage">
+        <h1 id="reg">Welcome new user for registration</h1>
+
+        <div th:if="${successmsg}">
+            <h3 style="color:blue" th:text="${successmsg}"></h3>
+        </div>
+
+        <div th:if="${errormsg}">
+            <h3 style="color:red" th:text="${errormsg}"></h3>
+        </div>
+
+        <br><br>
+
+        <form th:action="@{regform}" th:object="${user}" method="post">
+ <b> 
+         &nbsp;&nbsp;   Name:     <input type="text" th:field="*{name}"><br><br>
+         &nbsp;&nbsp;   Email Id: <input type="email" th:field="*{email}"><br><br>
+         &nbsp;&nbsp;   Password: <input type="password" th:field="*{password}"><br><br>
+        &nbsp;&nbsp;  Mobile No:  <input type="text" th:field="*{mobileno}"><br><br>
+         &nbsp;&nbsp; &nbsp;&nbsp;  <button type="submit">Register</button>
+</b>
+        </form>
+
+        <br><br>
+
+       &nbsp;&nbsp; <a href="index.html">Home</a><br><br>
+       &nbsp;&nbsp; <a href="logInPage">Login Here</a><br><br>
+    </div> </body>
+</html>

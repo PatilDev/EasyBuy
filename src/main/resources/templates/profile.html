@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+            <link rel="stylesheet" th:href="@{/css/head.css}"/>
+            <link rel="stylesheets" href="/css/style.css"/>
+        <link rel="stylesheet" th:href="@{/css/footer.css}"/>
+
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+      
+    </head>
+    <body>
+<div th:replace="~{header::Navbar}"></div>
+<br><br><br>
+       <h3><span id="span" > <center>Welcome User <span th:text="${modelName}"></center></span></h3>  <br>
+
+
+<center><img th:src="@{/images/easybuy.png}" width="600" height="550" alt="EasyBuy Logo"></center><br>
+<div th:replace="~{footer::footer}"></div> 
+</body>
+</html>

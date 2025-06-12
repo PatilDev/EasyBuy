@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link rel="stylesheet" th:href="@{/css/head.css}">
+    <link rel="stylesheet" th:href="@{/css/addProduct.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+</head>
+<body>
+
+    <!-- Header -->
+    <div th:replace="~{header::Navbar}"></div>
+
+    <br/><br/><br/></br>
+
+    <h2 class="form-title">Add Product</h2>
+
+    <form th:action="@{/addProduct}" method="post" enctype="multipart/form-data" class="product-form">
+        <label for="productName">Name:</label>
+        <input type="text" name="productName" id="productName" required /><br>
+
+        <label for="productType">Type:</label>
+        <input type="text" name="productType" id="productType" required /><br>
+
+        <label for="productAmount">Amount:</label>
+        <input type="number" name="productAmount" id="productAmount" value="1" min="1" step="1" required /><br>
+
+        <label for="productQuantity">Quantity:</label>
+        <input type="number" name="productQuantity" id="productQuantity" value="1" min="1" step="1"  required /><br>
+
+        <label for="image">Image:</label>
+        <input type="file" name="image" id="image" required /><br>
+
+        <button type="submit">Save</button>
+    </form>
+
+    <h3 class="note">📦 After you add a product in EasyBuy, deliver it to our warehouse within <strong>1 hour</strong>.</h3>
+
+    <!-- Footer -->
+    <div th:replace="~{footer::footer}"></div> 
+
+</body>
+</html>

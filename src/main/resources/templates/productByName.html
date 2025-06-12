@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Results</title>
+    <meta charset="UTF-8">
+
+    <!-- Keep Navbar and Footer CSS as-is -->
+    <link rel="stylesheet" th:href="@{/css/head.css}"/>
+    <link rel="stylesheet" th:href="@{/css/footer.css}"/>
+
+    <style>
+        .search-page {
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f8;
+            color: #333;
+            padding-bottom: 30px;
+        }
+
+        .search-page h2 {
+            text-align: center;
+            color: rgb(133, 1, 14);
+            background-color: rgb(249, 221, 137);
+            margin: 10px 30% auto 30%;
+            padding: 10px;
+            border-radius: 30px;
+            border:2px,solid,red;
+        }
+
+        .search-page ul {
+            list-style-type: none;
+            padding: 0;
+            margin:auto;
+            width: 80%;
+        }
+
+        .search-page li {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .search-page p {
+            margin: 5px 0;
+        }
+
+        .search-page strong {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .search-page img {
+            display: block;
+            margin-top: 10px;
+            border-radius: 8px;
+            max-width: 100px;
+        }
+
+        .search-page a {
+            display: inline-block;
+            margin: 30px auto;
+            padding: 10px 20px;
+            background-color: #1a5c9d;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .search-page a:hover {
+            background-color: #154c82;
+        }
+
+        .search-page .no-results {
+            text-align: center;
+            font-size: 18px;
+            color: #999;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ✅ Navbar remains untouched -->
+    <div th:replace="~{header::Navbar}"></div>
+
+    <!-- ✅ Wrap Search Page Content in a div -->
+    <div class="search-page">
+        <br><br><br>
+        <h2>Search Results</h2>
+
+        <div th:if="${searchResults.empty}" class="no-results">
+            <p>No results found for your search.</p>
+        </div>
+
+        <ul th:if="${!searchResults.empty}">
+            <li th:each="item : ${searchResults}">
+                <p><strong th:text="${item.productName}">Product Name</strong></p>
+                <p th:text="'Type: ' + ${item.productType}">Product Type</p>
+                <p th:text="'Amount: ₹' + ${item.productAmount}">Amount</p>
+                <p th:text="'Quantity: ' + ${item.productQuantity}">Quantity</p>
+                <img th:src="@{/product-image/{id}(id=${item.productId})}" alt="Product Image"/>
+            </li>
+        </ul>
+
+        <center><a th:href="@{/}">Back to Home</a></center>
+    </div>
+
+    <!-- ✅ Footer remains untouched -->
+    <div th:replace="~{footer::footer}"></div>
+</body>
+</html>

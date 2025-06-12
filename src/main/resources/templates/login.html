@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+        <link rel="stylesheet" th:href="@{css/style.css}">
+    <head>
+        <title>User Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body id="loginpage" >
+        <div th:if="${errormsg}">
+            <h3 style="color:red" th:text="${errormsg}"></h3>
+        </div>
+        <br>
+        <div class="login">
+     <center>  <h1 id="b">Login Here</h1>
+        <table> <form th:action="@{logInForm}" th:object="${user}" method="post">
+                <h2> <tr>
+                    <td> Email Id: <input type="email" th:field="*{email}"><br><br></td>
+                 </tr>
+                <tr>
+                    <td>Password: <input type="password" th:field="*{password}"><br><br></td>
+                </tr>
+                <tr></center>
+                  <center> <td><button id="button" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;</button></center></td>
+                </h2>
+                </tr>
+            </form>
+        
+    </table>
+
+        <br>
+      <a id="homeref" href="index.html">Home</a>
+      <a id="homeref" href="logInPage">Refresh</a>
+        
+
+        </div>
+        <div class="userloginimg">
+        <img th:src="@{/images/userlogin.jpg}" width="400" height="400"/></div>
+    </body>
+</html>

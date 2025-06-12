@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Payment History</title>
+    <link rel="stylesheet" th:href="@{/css/head.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}" />
+    <style>
+        table {
+            width: 90%;
+            margin: 2rem auto;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color:rgb(126, 99, 206);
+            
+            color: white;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 2rem;
+            color: #1a5c9d;
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="~{header::Navbar}"></div>
+
+<h2>🧾 Payment History</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Payment ID</th>
+            <th>Order ID</th>
+            <th>Product Name</th>
+            <th>Amount (₹)</th>
+            <th>Currency</th>
+            <th>Address</th>
+            <th>Date & Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="p : ${historyList}">
+            <td th:text="${p.paymentId}"></td>
+            <td th:text="${p.orderId}"></td>
+            <td th:text="${p.productName}"></td>
+            <td th:text="${p.amount}"></td>
+            <td th:text="${p.currency}"></td>
+            <td th:text="${p.userAddress}"></td>
+            <td th:text="${#temporals.format(p.paymentTime, 'dd-MM-yyyy HH:mm')}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<div th:replace="~{footer::footer}"></div>
+
+</body>
+</html>

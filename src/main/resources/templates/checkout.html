@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <link rel="stylesheet" th:href="@{/css/head.css}"/>
+        <link rel="stylesheet" th:href="@{/css/footer.css}"/>
+
+<head>
+    <title>Easy Buy - Checkout</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <div th:replace="~{header::Navbar}"></div>
+
+ <br><br><br><br><br><br>
+
+<center>
+    <h2 script="color:blue">Proceed to Payment</h2>
+    <p>Amount: ₹<span th:text="${amount / 100}"></span></p> <!-- Display in Rupees -->
+<br>
+    <button id="payBtn">Pay Now</button>
+    
+</center>
+<br><br><br>
+    <script th:inline="javascript">
+        var options = {
+            "key": /*[[${apiKey}]]*/ "", // ✅ Razorpay API key
+            "amount": /*[[${amount}]]*/ "", // ✅ Amount in paise
+            "currency": "INR",
+            "name": "Easy Buy",
+            "description": "Purchase Product",
+            "order_id": /*[[${orderId}]]*/ "", // ✅ Razorpay order ID
+            "handler": function (response) {
+                // After payment is successful, call your backend to store it
+                var form = document.createElement("form");
+                form.method = "POST";
+                form.action = "/payment/success";
+
+                var paymentId = document.createElement("input");
+                paymentId.name = "razorpay_payment_id";
+                paymentId.value = response.razorpay_payment_id;
+                form.appendChild(paymentId);
+
+                var orderId = document.createElement("input");
+                orderId.name = "razorpay_order_id";
+                orderId.value = response.razorpay_order_id;
+                form.appendChild(orderId);
+
+                var cartId = document.createElement("input");
+                cartId.name = "cartId";
+                cartId.value = /*[[${cart.cartid}]]*/ "";
+                form.appendChild(cartId);
+
+                document.body.appendChild(form);
+                form.submit(); // ✅ Post form to backend
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+
+        document.getElementById("payBtn").onclick = function () {
+            var rzp = new Razorpay(options);
+            rzp.open();
+        };
+    </script>
+<div th:replace="~{footer::footer}"></div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us - EasyBuy</title>
+    <link rel="stylesheet" th:href="@{/css/head.css}"/>
+    <link rel="stylesheet" th:href="@{/css/aboutas.css}" />
+    <link rel="stylesheet" th:href="@{/css/footer.css}"/>
+</head>
+<body>
+
+    <!-- Header -->
+    <div th:replace="~{header::Navbar}"></div>
+
+    <!-- Main Section -->
+    <section class="about-container" id="about-easybuy">
+        <br/><br/>
+        <h1 class="about-heading">About Us</h1>
+        <p class="about-intro">
+            <strong>EasyBuy</strong> is a dynamic and user-friendly e-commerce platform.
+        </p>
+
+        <h2 class="about-subheading">🚀 Project Overview</h2>
+        <p class="about-paragraph">
+            This project enables users to register, browse products, add them to their cart, and proceed to checkout via Razorpay payment integration. 
+            The goal is to simulate a full-stack e-commerce experience with secure backend logic, intuitive UI, and seamless database operations.
+        </p>
+
+        <h2 class="about-subheading">🛠️ Features</h2>
+        <ul class="about-features">
+            <li>User registration and login with validations</li>
+            <li>View all products stored in the database</li>
+            <li>Search products by name (partial or full match)</li>
+            <li>Add selected products to cart with a delivery address</li>
+            <li>Secure checkout using <strong>Razorpay</strong> payment gateway</li>
+            <li>Clean and modular frontend with reusable header/footer using Thymeleaf</li>
+        </ul>
+
+        <h2 class="about-subheading">📞 Customer Care</h2>
+        <p class="about-paragraph">
+            For any queries or issues, contact our support team at <strong>support@easybuy.com</strong> or call us on <strong>+91-9876543210</strong>.
+        </p>
+
+        <h2 class="about-subheading">👨‍💻 Developed By</h2>
+        <p class="about-paragraph">
+            <strong>Devendra Patil</strong> & <strong>Saurabh Gond</strong><br/>
+            MCA Final Year Students<br/>
+            Passionate about Java Development and building impactful software.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <div th:replace="~{footer::footer}"></div>
+</body>
+</html>
