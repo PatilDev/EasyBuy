@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,31 +18,48 @@ public class UserCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_id")
-    private Integer cartid; // changed from int to Integer
+    private Integer cartid;
 
     @Column(name = "product_name")
     private String CPName;
 
     @Column(name = "user_address")
-    private String UserAdd;
+    private String userAdd;
 
     @Column(name = "product_amount")
     private Integer CPA;
 
     @Column(name = "quantity")
-    private Integer Quantity;
+    private Integer quantity;
 
-    public UserCart() {
-    }
+    // ✅ ManyToOne relation with UserTable
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserTable user;
 
-    public UserCart(Integer cartid, String CPName, String UserAdd, Integer CPA, Integer Quantity) {
+    // ✅ Default Constructor
+    public UserCart() {}
+
+    // ✅ Constructor for testing (without UserTable)
+    public UserCart(Integer cartid, String CPName, String userAdd, Integer CPA, Integer quantity) {
         this.cartid = cartid;
         this.CPName = CPName;
-        this.UserAdd = UserAdd;
+        this.userAdd = userAdd;
         this.CPA = CPA;
-        this.Quantity = Quantity;
+        this.quantity = quantity;
     }
 
+    // ✅ Constructor with User (for app logic)
+    public UserCart(Integer cartid, String CPName, String userAdd, Integer CPA, Integer quantity, UserTable user) {
+        this.cartid = cartid;
+        this.CPName = CPName;
+        this.userAdd = userAdd;
+        this.CPA = CPA;
+        this.quantity = quantity;
+        this.user = user;
+    }
+
+    // ✅ Getters and Setters
     public Integer getCartid() {
         return cartid;
     }
@@ -58,11 +77,11 @@ public class UserCart {
     }
 
     public String getUserAdd() {
-        return UserAdd;
+        return userAdd;
     }
 
-    public void setUserAdd(String UserAdd) {
-        this.UserAdd = UserAdd;
+    public void setUserAdd(String userAdd) {
+        this.userAdd = userAdd;
     }
 
     public Integer getCPA() {
@@ -74,62 +93,50 @@ public class UserCart {
     }
 
     public Integer getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
-    public void setQuantity(Integer Quantity) {
-        this.Quantity = Quantity;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public UserCart cartid(Integer cartid) {
-        this.cartid = cartid;
-        return this;
+    public UserTable getUser() {
+        return user;
     }
 
-    public UserCart CPName(String CPName) {
-        this.CPName = CPName;
-        return this;
+    public void setUser(UserTable user) {
+        this.user = user;
     }
 
-    public UserCart UserAdd(String UserAdd) {
-        this.UserAdd = UserAdd;
-        return this;
-    }
-
-    public UserCart CPA(Integer CPA) {
-        this.CPA = CPA;
-        return this;
-    }
-
-    public UserCart Quantity(Integer Quantity) {
-        this.Quantity = Quantity;
-        return this;
-    }
-
+    // ✅ equals and hashCode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UserCart userCart)) return false;
-        return Objects.equals(cartid, userCart.cartid) &&
-                Objects.equals(CPName, userCart.CPName) &&
-                Objects.equals(UserAdd, userCart.UserAdd) &&
-                Objects.equals(CPA, userCart.CPA) &&
-                Objects.equals(Quantity, userCart.Quantity);
+        if (!(o instanceof UserCart)) return false;
+        UserCart that = (UserCart) o;
+        return Objects.equals(cartid, that.cartid) &&
+                Objects.equals(CPName, that.CPName) &&
+                Objects.equals(userAdd, that.userAdd) &&
+                Objects.equals(CPA, that.CPA) &&
+                Objects.equals(quantity, that.quantity) &&
+                Objects.equals(user, that.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cartid, CPName, UserAdd, CPA, Quantity);
+        return Objects.hash(cartid, CPName, userAdd, CPA, quantity, user);
     }
 
+    // ✅ toString
     @Override
     public String toString() {
         return "UserCart{" +
                 "cartid=" + cartid +
                 ", CPName='" + CPName + '\'' +
-                ", UserAdd='" + UserAdd + '\'' +
+                ", userAdd='" + userAdd + '\'' +
                 ", CPA=" + CPA +
-                ", Quantity=" + Quantity +
+                ", quantity=" + quantity +
+                ", user=" + (user != null ? user.getId() : null) +
                 '}';
     }
 }

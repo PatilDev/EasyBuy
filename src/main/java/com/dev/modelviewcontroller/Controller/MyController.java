@@ -53,6 +53,7 @@ public String submitLoginForm(@ModelAttribute("user") UserTable userTable,Model 
     if(validUser != null)
     { model.addAttribute("modelName", validUser.getName());
       session.setAttribute("loggedInUser", validUser);
+      session.setAttribute("userId",validUser.getId());
         return "profile";
     }
     else{

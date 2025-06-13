@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,13 +27,17 @@ public class PaymentHistory {
     private String userAddress;
     private LocalDateTime paymentTime;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserTable user;
+
     // Default constructor
     public PaymentHistory() {
     }
 
-    // ✅ Constructor without ID (used when creating new record)
+    // ✅ Constructor with User
     public PaymentHistory(String paymentId, String orderId, String productName, Integer amount,
-                          String currency, String userAddress, LocalDateTime paymentTime) {
+                          String currency, String userAddress, LocalDateTime paymentTime, UserTable user) {
         this.paymentId = paymentId;
         this.orderId = orderId;
         this.productName = productName;
@@ -39,11 +45,12 @@ public class PaymentHistory {
         this.currency = currency;
         this.userAddress = userAddress;
         this.paymentTime = paymentTime;
+        this.user = user;
     }
 
-    // Constructor with ID (optional)
+    // Optional constructor with ID
     public PaymentHistory(Long id, String paymentId, String orderId, String productName, Integer amount,
-                          String currency, String userAddress, LocalDateTime paymentTime) {
+                          String currency, String userAddress, LocalDateTime paymentTime, UserTable user) {
         this.id = id;
         this.paymentId = paymentId;
         this.orderId = orderId;
@@ -52,6 +59,7 @@ public class PaymentHistory {
         this.currency = currency;
         this.userAddress = userAddress;
         this.paymentTime = paymentTime;
+        this.user = user;
     }
 
     // Getters and Setters
@@ -119,45 +127,12 @@ public class PaymentHistory {
         this.paymentTime = paymentTime;
     }
 
-    // Builder methods (optional)
-    public PaymentHistory id(Long id) {
-        setId(id);
-        return this;
+    public UserTable getUser() {
+        return user;
     }
 
-    public PaymentHistory paymentId(String paymentId) {
-        setPaymentId(paymentId);
-        return this;
-    }
-
-    public PaymentHistory orderId(String orderId) {
-        setOrderId(orderId);
-        return this;
-    }
-
-    public PaymentHistory productName(String productName) {
-        setProductName(productName);
-        return this;
-    }
-
-    public PaymentHistory amount(Integer amount) {
-        setAmount(amount);
-        return this;
-    }
-
-    public PaymentHistory currency(String currency) {
-        setCurrency(currency);
-        return this;
-    }
-
-    public PaymentHistory userAddress(String userAddress) {
-        setUserAddress(userAddress);
-        return this;
-    }
-
-    public PaymentHistory paymentTime(LocalDateTime paymentTime) {
-        setPaymentTime(paymentTime);
-        return this;
+    public void setUser(UserTable user) {
+        this.user = user;
     }
 
     // Equals and HashCode
@@ -172,15 +147,15 @@ public class PaymentHistory {
                 Objects.equals(amount, that.amount) &&
                 Objects.equals(currency, that.currency) &&
                 Objects.equals(userAddress, that.userAddress) &&
-                Objects.equals(paymentTime, that.paymentTime);
+                Objects.equals(paymentTime, that.paymentTime) &&
+                Objects.equals(user, that.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, paymentId, orderId, productName, amount, currency, userAddress, paymentTime);
+        return Objects.hash(id, paymentId, orderId, productName, amount, currency, userAddress, paymentTime, user);
     }
 
-    // toString()
     @Override
     public String toString() {
         return "PaymentHistory{" +
@@ -192,6 +167,7 @@ public class PaymentHistory {
                 ", currency='" + currency + '\'' +
                 ", userAddress='" + userAddress + '\'' +
                 ", paymentTime=" + paymentTime +
+                ", user=" + user +
                 '}';
     }
-} 
+}
